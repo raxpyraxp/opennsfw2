@@ -3,6 +3,22 @@
 [![ci](https://github.com/bhky/opennsfw2/actions/workflows/ci.yml/badge.svg)](https://github.com/bhky/opennsfw2/actions)
 [![License MIT 1.0](https://img.shields.io/badge/license-MIT%201.0-blue.svg)](LICENSE)
 
+# About this fork
+
+The opennsfw2 project got forked to make it fit onto the heroku slug which
+is limited to 500M. To reduce the size of a slug the following changes
+were made:
+
+1. `tensorflow` library was replaced with `tensorflow-cpu`.
+2. Removed video processing as it requires `libGL.so.1` library.
+
+Given that we don't have a GPU on our heroku instance we don't need full
+`tensorflow` lib but only it's CPU variant. Additionally we don't have
+`mesa` on heroku so we're unable to use `cv2` which was used by video
+prediction functionality, so this was disabled.
+
+If you don't need to use opennsfw2 on heroku please refer to the parent project.
+
 # Introduction
 
 Detecting Not-Suitable-For-Work (NSFW) content is a high demand task in 
